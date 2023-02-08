@@ -15,6 +15,7 @@ public class ProiectPOO {
         LinkedHashMap<Integer,Users> users = new LinkedHashMap<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Comanda comanda = new ComenziUsers();
         if (args == null) {
             System.out.println("Nothing to read here");
         } else {
@@ -71,7 +72,7 @@ public class ProiectPOO {
                                     if(ok == 0)System.out.print("[");
                                     ok++;
                                     if(ok > 1)System.out.print(",");
-                                    ComenziUsers comanda = new ComenziUsers();
+
                                     String afisare = comanda.afiseaza(s,streamersFactory);
                                     System.out.print(afisare);
                                 }
@@ -86,7 +87,7 @@ public class ProiectPOO {
                                     if(ok > 0)System.out.print(",");
                                     ok++;
                                     Streams s = streams.get(i);
-                                    ComenziUsers comanda = new ComenziUsers();
+
                                     String afisare = comanda.afiseaza(s,streamersFactory);
                                     System.out.print(afisare);
                                 }
@@ -117,8 +118,8 @@ public class ProiectPOO {
                         if(line1[1].equals("LISTEN")){
                             int UserId = Integer.parseInt(line1[0]);
                             int streamId = Integer.parseInt(line1[2]);
-                            ComenziUsers comandaUsers = new ComenziUsers();
-                            comandaUsers.asculta(users,  streamsFactory,UserId, streamId);
+
+                            comanda.asculta(users,  streamsFactory,UserId, streamId);
                         }
                         if(line1[1].equals("RECOMMEND")){
                             int UserId = Integer.parseInt(line1[0]);
@@ -161,7 +162,7 @@ public class ProiectPOO {
                             System.out.print("[");
                             for(Streams s : recomandari){
                                 ok++;
-                                ComenziUsers comanda = new ComenziUsers();
+
                                 String afisare = comanda.afiseaza(s,streamersFactory);
                                 System.out.print(afisare);
                                 if(ok < 5 && ok < recomandari.size())System.out.print(",");
@@ -229,7 +230,7 @@ public class ProiectPOO {
                             System.out.print("[");
                             for(Streams s : recomandari){
                                 ok++;
-                                ComenziUsers comanda = new ComenziUsers();
+
                                 String afisare = comanda.afiseaza(s,streamersFactory);
                                 System.out.print(afisare);
                                 if(ok < 3 && ok < recomandari.size())System.out.print(",");
@@ -239,7 +240,6 @@ public class ProiectPOO {
                                 }
                             }
                         }
-
                     } catch (ArrayIndexOutOfBoundsException e) {
                         e.printStackTrace();
                     }
