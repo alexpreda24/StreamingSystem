@@ -13,7 +13,7 @@ public class ProiectPOO {
         CSVReader reader;
         LinkedHashMap<Integer,Streamers> streamers;
         LinkedHashMap<Integer,Streams> streams;
-        LinkedHashMap<Integer,Users> users;
+        LinkedHashMap<Integer,Users> users = new LinkedHashMap<>();
         LinkedHashMap<String, Object> map = new LinkedHashMap<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -26,12 +26,10 @@ public class ProiectPOO {
                 String streamsinput = antentinput + args[1];
                 String usersinput = antentinput + args[2];
                 String commandsinput = antentinput + args[3];
-
                 String[] line;
                 reader = new CSVReader(new FileReader(streamersinput));
                 StreamersFactory streamersFactory = StreamersFactory.Instance();
                 StreamsFactory streamsFactory = StreamsFactory.Instance();
-                UsersFactory usersFactory = UsersFactory.Instance();
                 reader.readNext();
                 while ((line = reader.readNext()) != null) {
                   try {
@@ -56,7 +54,7 @@ public class ProiectPOO {
                 reader.readNext();
                 while ((line = reader.readNext()) != null) {
                     try {
-                        usersFactory.createUsers(Integer.parseInt(line[0]), line[1], line[2]);
+                        users.put(Integer.parseInt(line[0]),new Users(Integer.parseInt(line[0]), line[1], line[2]));
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }
@@ -109,7 +107,6 @@ public class ProiectPOO {
                             }
                             if(ok >= 1)System.out.println("]");
                             if (ok == 0) {
-                                users = usersFactory.getUsers();
                                 Users user = users.get(cauta);
                                 List<Integer> list = user.getStreams();
                                 System.out.print("[");
@@ -142,9 +139,11 @@ public class ProiectPOO {
                                     for(String key: map.keySet()){
                                         if(!key.equals("dateAdded"))
                                             System.out.print("\"" + key + "\":\"" + map.get(key) + "\",");
+
                                         else
                                             System.out.print("\"" + key + "\":\"" + sdf.format(time) + "\"");
                                     }
+
                                     System.out.print("}");
                                 }
                                 System.out.println("]");
@@ -175,12 +174,11 @@ public class ProiectPOO {
                             int UserId = Integer.parseInt(line1[0]);
                             int streamId = Integer.parseInt(line1[2]);
                             ComenziUsers comandaUsers = new ComenziUsers();
-                            comandaUsers.asculta(usersFactory,  streamsFactory,UserId, streamId);
+                            comandaUsers.asculta(users,  streamsFactory,UserId, streamId);
                         }
                         if(line1[1].equals("RECOMMEND")){
                             int UserId = Integer.parseInt(line1[0]);
                             String type = line1[2];
-                            users = usersFactory.getUsers();
                             Users user = users.get(UserId);
                             List<Integer> list = user.getStreams();
                             ArrayList<Streams> recomandari = new ArrayList<>();
@@ -260,7 +258,6 @@ public class ProiectPOO {
                         if(line1[1].equals("SURPRISE")){
                             int UserId = Integer.parseInt(line1[0]);
                             String type = line1[2];
-                            users = usersFactory.getUsers();
                             Users user = users.get(UserId);
                             List<Integer> list = user.getStreams();
                             ArrayList<Streams> recomandari = new ArrayList<>();
