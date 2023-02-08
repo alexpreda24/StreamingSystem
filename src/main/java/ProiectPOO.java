@@ -11,10 +11,8 @@ import java.util.*;
 public class ProiectPOO {
     public static void main(String[] args) {
         CSVReader reader;
-        LinkedHashMap<Integer,Streamers> streamers;
         LinkedHashMap<Integer,Streams> streams;
         LinkedHashMap<Integer,Users> users = new LinkedHashMap<>();
-        LinkedHashMap<String, Object> map = new LinkedHashMap<>();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
         if (args == null) {
@@ -73,35 +71,9 @@ public class ProiectPOO {
                                     if(ok == 0)System.out.print("[");
                                     ok++;
                                     if(ok > 1)System.out.print(",");
-                                    map.put("id", s.getID());
-                                    map.put("name", s.getName());
-                                    streamers = streamersFactory.getStreamers();
-                                    String name = streamers.get(s.getStreamerID()).getName();
-                                    map.put("streamerName", name);
-                                    map.put("noOfListenings", s.getNoOfStreams());
-                                    int durata = (int) s.getLength();
-                                    int ore = durata / 3600;
-                                    int minute = (durata % 3600) / 60;
-                                    int secunde = durata % 60;
-                                    if (ore == 0) {
-                                        String time = String.format("%02d:%02d", minute, secunde);
-                                        map.put("length", time);
-                                    } else {
-                                        String time = String.format("%02d:%02d:%02d", ore, minute, secunde);
-                                        map.put("length", time);
-                                    }
-                                    long date = s.getDateAdded();
-
-                                    java.util.Date time=new java.util.Date(date * 1000);
-                                    map.put("dateAdded", sdf.format(time));
-                                    System.out.print("{");
-                                    for(String key: map.keySet()){
-                                       if(!key.equals("dateAdded"))
-                                           System.out.print("\"" + key + "\":\"" + map.get(key) + "\",");
-                                       else
-                                           System.out.print("\"" + key + "\":\"" + sdf.format(time) + "\"");
-                                    }
-                                    System.out.print("}");
+                                    ComenziUsers comanda = new ComenziUsers();
+                                    String afisare = comanda.afiseaza(s,streamersFactory);
+                                    System.out.print(afisare);
                                 }
 
                             }
@@ -114,37 +86,9 @@ public class ProiectPOO {
                                     if(ok > 0)System.out.print(",");
                                     ok++;
                                     Streams s = streams.get(i);
-                                        map.put("id", s.getID());
-                                        map.put("name", s.getName());
-                                        streamers = streamersFactory.getStreamers();
-                                        String name = streamers.get(s.getStreamerID()).getName();
-                                        map.put("streamerName", name);
-                                        map.put("noOfListenings", s.getNoOfStreams());
-                                        int durata = (int) s.getLength();
-                                        int ore = durata / 3600;
-                                        int minute = (durata % 3600) / 60;
-                                        int secunde = durata % 60;
-                                        if (ore == 0) {
-                                            String time = String.format("%02d:%02d", minute, secunde);
-                                            map.put("length", time);
-                                        } else {
-                                            String time = String.format("%02d:%02d:%02d", ore, minute, secunde);
-                                            map.put("length", time);
-                                        }
-                                        long date =  s.getDateAdded() ;//pentru ca e in GMT+2
-                                        java.util.Date time=new java.util.Date(date * 1000);
-                                        map.put("dateAdded", sdf.format(time));
-
-                                    System.out.print("{");
-                                    for(String key: map.keySet()){
-                                        if(!key.equals("dateAdded"))
-                                            System.out.print("\"" + key + "\":\"" + map.get(key) + "\",");
-
-                                        else
-                                            System.out.print("\"" + key + "\":\"" + sdf.format(time) + "\"");
-                                    }
-
-                                    System.out.print("}");
+                                    ComenziUsers comanda = new ComenziUsers();
+                                    String afisare = comanda.afiseaza(s,streamersFactory);
+                                    System.out.print(afisare);
                                 }
                                 System.out.println("]");
                             }
@@ -217,37 +161,9 @@ public class ProiectPOO {
                             System.out.print("[");
                             for(Streams s : recomandari){
                                 ok++;
-                                map.put("id", s.getID());
-                                map.put("name", s.getName());
-                                streamers = streamersFactory.getStreamers();
-                                String name = streamers.get(s.getStreamerID()).getName();
-                                map.put("streamerName", name);
-                                map.put("noOfListenings", s.getNoOfStreams());
-                                int durata = (int) s.getLength();
-                                int ore = durata / 3600;
-                                int minute = (durata % 3600) / 60;
-                                int secunde = durata % 60;
-                                if (ore == 0) {
-                                    String time = String.format("%02d:%02d", minute, secunde);
-                                    map.put("length", time);
-                                } else {
-                                    String time = String.format("%02d:%02d:%02d", ore, minute, secunde);
-                                    map.put("length", time);
-                                }
-                                long date = s.getDateAdded() ;
-                                java.util.Date time=new java.util.Date(date * 1000);
-
-                                map.put("dateAdded", sdf.format(time));
-
-                                System.out.print("{");
-                                for(String key: map.keySet()){
-                                    if(!key.equals("dateAdded"))
-                                        System.out.print("\"" + key + "\":\"" + map.get(key) + "\",");
-                                    else
-                                        System.out.print("\"" + key + "\":\"" + sdf.format(time) + "\"");
-
-                                }
-                                System.out.print("}");
+                                ComenziUsers comanda = new ComenziUsers();
+                                String afisare = comanda.afiseaza(s,streamersFactory);
+                                System.out.print(afisare);
                                 if(ok < 5 && ok < recomandari.size())System.out.print(",");
                                 if(ok == 5 || ok == recomandari.size()){
                                     System.out.println("]");
@@ -313,37 +229,9 @@ public class ProiectPOO {
                             System.out.print("[");
                             for(Streams s : recomandari){
                                 ok++;
-                                map.put("id", s.getID());
-                                map.put("name", s.getName());
-                                streamers = streamersFactory.getStreamers();
-                                String name = streamers.get(s.getStreamerID()).getName();
-                                map.put("streamerName", name);
-                                map.put("noOfListenings", s.getNoOfStreams());
-                                int durata = (int) s.getLength();
-                                int ore = durata / 3600;
-                                int minute = (durata % 3600) / 60;
-                                int secunde = durata % 60;
-                                if (ore == 0) {
-                                    String time = String.format("%02d:%02d", minute, secunde);
-                                    map.put("length", time);
-                                } else {
-                                    String time = String.format("%02d:%02d:%02d", ore, minute, secunde);
-                                    map.put("length", time);
-                                }
-                                long date = s.getDateAdded() ;
-                                java.util.Date time=new java.util.Date(date * 1000);
-
-                                map.put("dateAdded", sdf.format(time));
-
-                                System.out.print("{");
-                                for(String key: map.keySet()){
-                                    if(!key.equals("dateAdded"))
-                                        System.out.print("\"" + key + "\":\"" + map.get(key) + "\",");
-                                    else
-                                        System.out.print("\"" + key + "\":\"" + sdf.format(time) + "\"");
-
-                                }
-                                System.out.print("}");
+                                ComenziUsers comanda = new ComenziUsers();
+                                String afisare = comanda.afiseaza(s,streamersFactory);
+                                System.out.print(afisare);
                                 if(ok < 3 && ok < recomandari.size())System.out.print(",");
                                 if(ok == 3 || ok == recomandari.size()){
                                     System.out.println("]");
