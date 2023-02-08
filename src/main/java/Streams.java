@@ -9,12 +9,6 @@ public abstract class Streams {
     private int streamerID;
     private long length;
     private long dateAdded;
-    private boolean isListened;
-
-    public abstract boolean isListened();
-
-    public abstract void setListened(boolean listened);
-
     private List<Streams> streams;
 
     public int getStreamType() {

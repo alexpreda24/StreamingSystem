@@ -10,18 +10,17 @@ public class UsersFactory {
         return instance;
     }
     public void createUsers(Integer ID, String name,String streams){
+
         users.put(ID,new Users(ID,name,streams));
     }
 
     public LinkedHashMap<Integer, Users> getUsers() {
         return users;
     }
-    public void setUsers() {
-        users = null;
-    }
+
 
     public void updateUsers(int ID,int streamID){
 
-        users.get(ID).setStr(users.get(ID).getStreams(),streamID);
+        users.get(ID).setStr(streamID);
     }
 }

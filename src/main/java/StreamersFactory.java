@@ -2,7 +2,7 @@ import java.util.LinkedHashMap;
 
 public class StreamersFactory {
     private static StreamersFactory instance;
-    private static LinkedHashMap<Integer,Streamers> streamers = new LinkedHashMap<>();
+    private  LinkedHashMap<Integer,Streamers> streamers = new LinkedHashMap<>();
     private StreamersFactory() {
     }
 
@@ -13,27 +13,24 @@ public class StreamersFactory {
         return new StreamersFactory();
     }
 
-    public static LinkedHashMap<Integer,Streamers> getStreamers() {
+    public  LinkedHashMap<Integer,Streamers> getStreamers() {
         return streamers;
     }
 
-    public Streamers createStreamer(int type, int ID, String name) {
+    public void createStreamer(int type, int ID, String name) {
         switch(type) {
             case 1:
                 streamers.put(ID,new Muzician(type,ID, name));
-                return new Muzician(type,ID, name);
+                break;
             case 2:
                 streamers.put(ID,new Gazda(type,ID, name));
-                return new Gazda(type,ID, name);
+                break;
             case 3:
                 streamers.put(ID,new AutorAdbk(type,ID, name));
-                return new AutorAdbk(type,ID, name);
+                break;
             default:
-                return null;
+                break;
         }
-    }
-    public void updateStreamer(int ID,Streams st){
-
     }
 
 

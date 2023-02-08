@@ -7,17 +7,6 @@ public class AudioBook extends Streams {
     private int streamerID;
     private long length;
     private long dateAdded;
-    private boolean isListened = false;
-
-    @Override
-    public boolean isListened() {
-        return isListened;
-    }
-
-    public void setListened(boolean listened) {
-        isListened = listened;
-    }
-
     public void setNoOfStreams(long noOfStreams) {
         this.noOfStreams = noOfStreams;
     }
@@ -71,7 +60,7 @@ public class AudioBook extends Streams {
         this.streamerID = streamsBuilder.streamerID;
         this.length = streamsBuilder.length;
         this.dateAdded = streamsBuilder.dateAdded;
-        this.isListened = false;
+
     }
 
     public static class AudioBookBuilder{
@@ -83,7 +72,6 @@ public class AudioBook extends Streams {
         private int streamerID;
         private long length;
         private long dateAdded;
-        private boolean isListened;
         public AudioBookBuilder(int streamType, int ID, int streamGenre, long noOfStreams,
                               int streamerID, long length, long dateAdded,String name){
             this.streamType = streamType;
@@ -94,7 +82,6 @@ public class AudioBook extends Streams {
             this.streamerID = streamerID;
             this.length = length;
             this.dateAdded = dateAdded;
-            this.isListened = false;
         }
         public AudioBook build(){
             return new AudioBook(this);

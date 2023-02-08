@@ -7,16 +7,6 @@ public class PiesaMuzicala  extends Streams {
     private int streamerID;
     private long length;
     private long dateAdded;
-    private boolean isListened;
-
-    @Override
-    public boolean isListened() {
-        return isListened;
-    }
-
-    public void setListened(boolean listened) {
-        isListened = listened;
-    }
 
     public void setNoOfStreams(long noOfStreams) {
         this.noOfStreams = noOfStreams;
@@ -69,7 +59,6 @@ public class PiesaMuzicala  extends Streams {
         this.streamerID = streamsBuilder.streamerID;
         this.length = streamsBuilder.length;
         this.dateAdded = streamsBuilder.dateAdded;
-        this.isListened = streamsBuilder.isListened;
     }
 
     public static class PiesaMuzicalaBuilder{
@@ -81,9 +70,9 @@ public class PiesaMuzicala  extends Streams {
         private int streamerID;
         private long length;
         private long dateAdded;
-        private boolean isListened;
-        public PiesaMuzicalaBuilder(int streamType, int ID, int streamGenre, long noOfStreams,
-                              int streamerID, long length, long dateAdded,String name){
+        public PiesaMuzicalaBuilder(int streamType, int ID, int streamGenre,
+                       long noOfStreams, int streamerID, long length,
+                                    long dateAdded,String name){
             this.streamType = streamType;
             this.ID = ID;
             this.name = name;
@@ -92,7 +81,6 @@ public class PiesaMuzicala  extends Streams {
             this.streamerID = streamerID;
             this.length = length;
             this.dateAdded = dateAdded;
-            this.isListened = false;
         }
         public PiesaMuzicala build(){
             return new PiesaMuzicala(this);

@@ -2,7 +2,7 @@ import java.util.LinkedHashMap;
 
 public class StreamsFactory {
     private static StreamsFactory instance;
-        private LinkedHashMap<Integer,Streams> streams = new LinkedHashMap<Integer, Streams>();
+        private LinkedHashMap<Integer,Streams> streams = new LinkedHashMap<>();
     private StreamsFactory() {
     }
 
@@ -16,9 +16,7 @@ public class StreamsFactory {
     public LinkedHashMap<Integer, Streams> getStreams() {
         return streams;
     }
-    public  void setStreams() {
-        streams = null;
-    }
+
 
     public void createStream(int type, int ID, int streamGenre, long noOfStreams,
                              int streamerID, long length, long dateAdded, String name) {

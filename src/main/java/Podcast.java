@@ -6,18 +6,6 @@ public class Podcast extends Streams {
     private long noOfStreams;
     private int streamerID;
     private long length;
-
-    private boolean isListened;
-
-    @Override
-    public boolean isListened() {
-        return isListened;
-    }
-
-    public void setListened(boolean listened) {
-        isListened = listened;
-    }
-
     private long dateAdded;
     public void setNoOfStreams(long noOfStreams) {
         this.noOfStreams = noOfStreams;
@@ -70,7 +58,7 @@ public class Podcast extends Streams {
         this.streamerID = streamsBuilder.streamerID;
         this.length = streamsBuilder.length;
         this.dateAdded = streamsBuilder.dateAdded;
-        this.isListened = false;
+
     }
 
     public static class PodcastBuilder{
@@ -82,7 +70,7 @@ public class Podcast extends Streams {
         private int streamerID;
         private long length;
         private long dateAdded;
-        private boolean isListened;
+
         public PodcastBuilder(int streamType, int ID, int streamGenre, long noOfStreams,
                                     int streamerID, long length, long dateAdded,String name){
             this.streamType = streamType;
@@ -93,7 +81,6 @@ public class Podcast extends Streams {
             this.streamerID = streamerID;
             this.length = length;
             this.dateAdded = dateAdded;
-            this.isListened = false;
         }
         public Podcast build(){
             return new Podcast(this);

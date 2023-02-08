@@ -77,7 +77,7 @@ public class ProiectPOO {
                                     if(ok > 1)System.out.print(",");
                                     map.put("id", s.getID());
                                     map.put("name", s.getName());
-                                    streamers = StreamersFactory.getStreamers();
+                                    streamers = streamersFactory.getStreamers();
                                     String name = streamers.get(s.getStreamerID()).getName();
                                     map.put("streamerName", name);
                                     map.put("noOfListenings", s.getNoOfStreams());
@@ -119,7 +119,7 @@ public class ProiectPOO {
                                     Streams s = streams.get(i);
                                         map.put("id", s.getID());
                                         map.put("name", s.getName());
-                                        streamers = StreamersFactory.getStreamers();
+                                        streamers = streamersFactory.getStreamers();
                                         String name = streamers.get(s.getStreamerID()).getName();
                                         map.put("streamerName", name);
                                         map.put("noOfListenings", s.getNoOfStreams());
@@ -221,7 +221,7 @@ public class ProiectPOO {
                                 ok++;
                                 map.put("id", s.getID());
                                 map.put("name", s.getName());
-                                streamers = StreamersFactory.getStreamers();
+                                streamers = streamersFactory.getStreamers();
                                 String name = streamers.get(s.getStreamerID()).getName();
                                 map.put("streamerName", name);
                                 map.put("noOfListenings", s.getNoOfStreams());
@@ -318,7 +318,7 @@ public class ProiectPOO {
                                 ok++;
                                 map.put("id", s.getID());
                                 map.put("name", s.getName());
-                                streamers = StreamersFactory.getStreamers();
+                                streamers = streamersFactory.getStreamers();
                                 String name = streamers.get(s.getStreamerID()).getName();
                                 map.put("streamerName", name);
                                 map.put("noOfListenings", s.getNoOfStreams());
