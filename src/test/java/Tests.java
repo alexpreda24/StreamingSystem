@@ -91,15 +91,15 @@ public class Tests {
 
     @Test
     public void test5RecommendSongs() throws IOException {
-//        ByteArrayOutputStream outPrintStream = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(outPrintStream));
+        ByteArrayOutputStream outPrintStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outPrintStream));
         String inputFolder = "inputs1/";
         String commandFolder = "test5/";
 
         ProiectPOO.main(getInputArgs(inputFolder, commandFolder));
-//        String output = outPrintStream.toString();
+        String output = outPrintStream.toString();
 
-//        assertJsonLineAreEqual(output, commandFolder, true);
+        assertJsonLineAreEqual(output, commandFolder, true);
 
         System.setOut(System.out);
     }
